@@ -1,6 +1,7 @@
-package kante.jofoo.util;
+package kante.jofoo;
 
 import kante.jofoo.StringKey;
+import kante.jofoo.util.Song;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,6 @@ public class StringKeyTest
     static class UserKey extends StringKey {
         {
             key = "/test/user";
-            database = 1;
         }
 
         UserKey(Jedis con) {

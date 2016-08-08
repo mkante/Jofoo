@@ -5,18 +5,19 @@ import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by moh on 8/6/16.
  */
-public class RedisKey
+public abstract class RedisKey
 {
     protected String key = "jofoo";
-    protected int database = 0;
     protected Logger log;
-    protected Map<String,Object> keyVars;
+    private Map<String,Object> keyVars;
     private Jedis jediCon;
 
     public RedisKey(Jedis con) {
@@ -25,29 +26,45 @@ public class RedisKey
         keyVars = new LinkedHashMap();
     }
 
-    public Jedis getJedis() {
-        jediCon.select(database);
-        return jediCon;
+    public RedisKey(Jedis con, String key) {
+        this(con);
+        this.key = key;
     }
 
-    public int getDatabase() {
-        return database;
+    public Jedis getJedis() {
+        //jediCon.select(database);
+        return jediCon;
     }
 
     public Long del() {
         return jediCon.del(key);
     }
 
-    public void setKey(String val) {
-        key = val;
-    }
-
     public String getKey() {
         return key;
     }
 
-    public void setKeyVar(String key, Object value) {
-        keyVars.put(key, value);
+    public RedisKey setKeyVars(Map<String,Object> params) {
+
+        keyVars = params;
+        for (Map.Entry<String,Object> e: params.entrySet()) {
+            String paramName = e.getKey();
+            String paramVal = e.getValue()+"";
+            key = key.replace("{"+paramName+"}", paramVal);
+        }
+        return this;
+    }
+
+    public void setKeyVars(Object... list) {
+        setKeyVars(Arrays.asList(list));
+    }
+
+
+    public void setKeyVars(List list) {
+
+        for (Object e: list) {
+            key = key.replaceFirst("\\?", e+"");
+        }
     }
 
     public boolean exists() {
