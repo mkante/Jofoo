@@ -1,0 +1,38 @@
+apply plugin: 'java'
+
+sourceCompatibility = 1.5
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
+    compile 'ch.qos.logback:logback-core:1.1.7'
+    compile 'ch.qos.logback:logback-classic:1.1.7'
+    compile 'redis.clients:jedis:2.9.0'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.8.1'
+
+    testCompile 'org.springframework:spring-context:4.3.2.RELEASE'
+    testCompile 'org.springframework:spring-test:4.3.2.RELEASE'
+    testCompile 'mysql:mysql-connector-java:6.0.3'
+    testCompile 'joda-time:joda-time:2.9.4'
+    testCompile 'junit:junit:4.12'
+}
+
+test {
+    minHeapSize = "128m"
+    useJUnit();
+    testLogging.showStackTraces = true
+    testLogging.showStandardStreams = true
+    testLogging.showCauses = true
+    testLogging.showExceptions = true
+    outputs.upToDateWhen { false }
+}
+
+task "uri" << {
+
+    URI ur = new URI("redis://192.168.56.21:6379/1");
+    println "Path: "+ur.path.split("/", 2)
+}
