@@ -58,27 +58,27 @@ public class ListKey extends RedisKey
         return getJedis().lpushx(key, jsonnableObjectToString(values));
     }
 
-    public String lindex(Long idx) {
+    public String lindex(long idx) {
         return getJedis().lindex(key, idx);
     }
 
-    public Integer lindexInt(Long idx) {
+    public Integer lindexInt(long idx) {
         return parseInt(lindex(idx));
     }
 
-    public Float lindexFloat(Long idx) {
+    public Float lindexFloat(long idx) {
         return parseFloat(lindex(idx));
     }
 
-    public Double lindexDouble(Long idx) {
+    public Double lindexDouble(long idx) {
         return parseDouble(lindex(idx));
     }
 
-    public BigDecimal lindexBigDecimal(Long idx) {
+    public BigDecimal lindexBigDecimal(long idx) {
         return parseBigDecimal(lindex(idx));
     }
 
-    public <T> T lindexObject(Long idx, Class<T> clzz) {
+    public <T> T lindexObject(long idx, Class<T> clzz) {
         return Json.parse(lindex(idx), clzz);
     }
 
@@ -114,32 +114,32 @@ public class ListKey extends RedisKey
         return Json.parse(lpop(), clzz);
     }
 
-    public List<String> lrange(Long start, Long end) {
+    public List<String> lrange(long start, long end) {
         return getJedis().lrange(key, start, end);
     }
 
-    public <T> List<T> lrangeObject(Long start, Long end, Class<T> clzz) {
+    public <T> List<T> lrangeObject(long start, long end, Class<T> clzz) {
         List<String> jsons = lrange(start, end);
         return parseJsonArray(jsons, clzz) ;
     }
 
-    public Long lrem (Long count, Object val) {
+    public Long lrem (long count, Object val) {
         return getJedis().lrem(key, count, val+"");
     }
 
-    public Long lrem (Long count, Jsonnable val) {
+    public Long lrem (long count, Jsonnable val) {
         return getJedis().lrem(key, count, val.toJson());
     }
 
-    public String lset (Long index, Object val) {
+    public String lset (long index, Object val) {
         return getJedis().lset(key, index, val+"");
     }
 
-    public String lset (Long index, Jsonnable val) {
+    public String lset (long index, Jsonnable val) {
         return getJedis().lset(key, index, val.toJson());
     }
 
-    public String ltrim(Long start, Long end) {
+    public String ltrim(long start, Long end) {
         return getJedis().ltrim(key, start, end);
     }
 
