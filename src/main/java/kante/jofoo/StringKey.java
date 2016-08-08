@@ -33,12 +33,15 @@ public class StringKey extends RedisKey
     public Integer getInt() {
         return parseInt(get());
     }
+
     public Double getDouble() {
         return parseDouble(get());
     }
+
     public Float getFloat() {
         return parseFloat(get());
     }
+
     public BigDecimal getBigDecimal() {
         return parseBigDecimal(get());
     }

@@ -1,7 +1,11 @@
 package kante.jofoo;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import redis.clients.jedis.Jedis;
 
 import java.util.LinkedHashMap;
@@ -13,6 +17,9 @@ import static org.junit.Assert.assertEquals;
 /**
  * Created by moh on 8/8/16.
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath*:spring/*.xml")
+@ActiveProfiles("test")
 public class RedisKeyTest
 {
     @Autowired

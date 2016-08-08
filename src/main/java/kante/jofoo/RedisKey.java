@@ -1,14 +1,15 @@
 package kante.jofoo;
 
+import kante.jofoo.util.Json;
+import kante.jofoo.util.Jsonnable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.ScanResult;
+import redis.clients.jedis.exceptions.JedisConnectionException;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by moh on 8/6/16.
@@ -21,6 +22,11 @@ public abstract class RedisKey
     private Jedis jediCon;
 
     public RedisKey(Jedis con) {
+
+        if (con == null) {
+            throw new JedisConnectionException("Jedis connection can't be null");
+        }
+
         log = LoggerFactory.getLogger(this.getClass());
         jediCon = con;
         keyVars = new LinkedHashMap();
@@ -31,13 +37,13 @@ public abstract class RedisKey
         this.key = key;
     }
 
-    public Jedis getJedis() {
+    public final Jedis getJedis() {
         //jediCon.select(database);
         return jediCon;
     }
 
     public Long del() {
-        return jediCon.del(key);
+        return getJedis().del(key);
     }
 
     public String getKey() {
@@ -68,7 +74,11 @@ public abstract class RedisKey
     }
 
     public boolean exists() {
-        return jediCon.exists(key) ;
+        return getJedis().exists(key) ;
+    }
+
+    public ScanResult<String> scan(String cursor) {
+        return getJedis().scan(cursor) ;
     }
 
     public void expire(int seconds) {
@@ -97,5 +107,32 @@ public abstract class RedisKey
 
     protected BigDecimal parseBigDecimal(String val) {
         return BigDecimal.valueOf(parseDouble(val));
+    }
+
+    static protected <T> List<T> parseJsonArray(List<String> list, Class<T> clzz) {
+        List objs= new ArrayList();
+        for (String json: list) {
+            objs.add(Json.parse(json, clzz));
+        }
+
+        return objs;
+    }
+
+    static protected String[] arrayObjectToString(Object... obj) {
+        String[] strArray = new String[obj.length];
+
+        for (int i=0; i < obj.length;i++) {
+            strArray[i] = obj[i]+"";
+        }
+        return strArray;
+    }
+
+    static protected String[] jsonnableObjectToString(Jsonnable... obj) {
+        String[] strArray = new String[obj.length];
+
+        for (int i=0; i < obj.length;i++) {
+            strArray[i] = obj[i].toJson();
+        }
+        return strArray;
     }
 }
