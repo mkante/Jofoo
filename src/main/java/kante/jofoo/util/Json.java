@@ -8,8 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by moh on 8/6/16.
@@ -34,6 +33,15 @@ public abstract class Json
         }
 
         return obj;
+    }
+
+    static public <T> List<T> parseList(Collection<String> list, Class<T> clzz) {
+        List objs= new ArrayList();
+        for (String json: list) {
+            objs.add(parse(json, clzz));
+        }
+
+        return objs;
     }
 
     public static String stringify(Object obj){

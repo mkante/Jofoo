@@ -7,6 +7,8 @@ import redis.clients.jedis.Jedis;
 
 import java.math.BigDecimal;
 import java.util.List;
+import static kante.jofoo.util.ArrayHelpers.* ;
+import static kante.jofoo.util.NumberHelpers.*;
 
 /**
  * Created by moh on 8/8/16.
@@ -120,7 +122,7 @@ public class ListKey extends RedisKey
 
     public <T> List<T> lrangeObject(long start, long end, Class<T> clzz) {
         List<String> jsons = lrange(start, end);
-        return parseJsonArray(jsons, clzz) ;
+        return Json.parseList(jsons, clzz) ;
     }
 
     public Long lrem (long count, Object val) {

@@ -7,6 +7,7 @@ import redis.clients.jedis.Jedis;
 
 import java.math.BigDecimal;
 import java.util.*;
+import static kante.jofoo.util.NumberHelpers.*;
 
 /**
  * Created by moh on 8/8/16.
