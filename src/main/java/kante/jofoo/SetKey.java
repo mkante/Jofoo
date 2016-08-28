@@ -51,14 +51,14 @@ public class SetKey extends RedisKey
         return getJedis().sismember(key, value);
     }
 
-    public Set<String> smember() {
+    public Set<String> smembers() {
 
         return getJedis().smembers(key);
     }
 
-    public <T> Set<T> smember(Class<T> clzz) {
+    public <T> Set<T> smembers(Class<T> clzz) {
 
-        return new HashSet( Json.parseList(smember(), clzz) );
+        return new HashSet( Json.parseList(smembers(), clzz) );
     }
 
     public Long smove(String desKey, Object val) {
@@ -94,6 +94,12 @@ public class SetKey extends RedisKey
         return Json.parse(srandmember(), clzz);
     }
 
+    /**
+     * WARNING: SPOP Removes and returns one or more random
+     * elements from the set value store at key.
+     *
+     * @return
+     */
     public String spop() {
         return getJedis().spop(getKey());
     }

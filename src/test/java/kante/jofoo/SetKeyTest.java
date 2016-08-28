@@ -3,6 +3,8 @@ package kante.jofoo;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
@@ -23,6 +25,9 @@ import static org.junit.Assert.assertTrue;
 @ActiveProfiles("test")
 public class SetKeyTest
 {
+
+    Logger log  = LoggerFactory.getLogger(SetKeyTest.class);
+
     static class TokenKey extends SetKey {
         {
             key = "/test/sam/tokens";
@@ -59,20 +64,24 @@ public class SetKeyTest
     @Test
     public void spop() {
 
+        // SADD is not sorted but it push new elements at the top
         tokens.sadd("token-1", "token-2");
         assertTrue(tokens.scard() == 2);
+        log.info("Set list: "+tokens.smembers());
 
-        assertTrue(tokens.spop().equals("token-1"));
+        tokens.spop();
         assertTrue(tokens.scard() == 1);
     }
 
     @Test
-    public void smember() {
+    public void smembers() {
 
-        tokens.sadd("token-2", "token-1");
+        // SADD is not sorted but it push new elements at the top
+        tokens.sadd("token-1", "token-2");
         assertTrue(tokens.scard() == 2);
 
-        Set o = tokens.smember();
+        Set o = tokens.smembers();
+        log.info("Set list: "+o);
         assertTrue(o.size() == 2);
 
         Object[] arrayA = o.toArray();

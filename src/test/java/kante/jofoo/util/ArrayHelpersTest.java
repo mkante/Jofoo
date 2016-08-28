@@ -22,4 +22,16 @@ public class ArrayHelpersTest
         assertTrue((Integer)c[3] == 4);
         assertTrue((Integer)c[4] == 5);
     }
+
+    @Test
+    public void split() {
+
+        String str1 = " mike,susan;song, mike";
+        String[] parts = ArrayHelpers.split(str1, ",");
+        assertTrue(parts.length == 3);
+        assertEquals(parts[0], "mike");
+        assertEquals(parts[1], "susan;song");
+        assertEquals(parts[2], "mike");
+
+    }
 }

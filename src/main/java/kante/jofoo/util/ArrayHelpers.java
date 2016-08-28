@@ -26,6 +26,19 @@ public abstract class ArrayHelpers
         return strArray;
     }
 
+    static public String[] split(String str, String joiner) {
+        if (str == null) {
+            return null;
+        }
+
+        String[] parts = str.trim().split(joiner);
+        for (int i = 0; i < parts.length; i++) {
+            parts[i] = parts[i].trim() ;
+        }
+
+        return parts;
+    }
+
     public static Object[] merge(final Object[] arrayA, final Object... arrayB) {
         int size = arrayA.length + arrayB.length;
         Object[] lst1 = new Object[size];
