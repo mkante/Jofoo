@@ -56,4 +56,18 @@ public abstract class Json
         return json;
     }
 
+    public static String prettyPrint(Object obj) {
+
+        String json = null;
+        try {
+            json =
+                    mapper.writerWithDefaultPrettyPrinter()
+                            .writeValueAsString(obj);
+        }
+        catch (JsonProcessingException e){
+            log.error(e.getMessage(), e);
+        }
+        return json;
+    }
+
 }
