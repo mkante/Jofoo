@@ -76,7 +76,7 @@ public class SetKeyTest
     @Test
     public void smembers() {
 
-        // SADD is not sorted but it push new elements at the top
+        // SADD is not sorted but it push new elements at the end
         tokens.sadd("token-1", "token-2");
         assertTrue(tokens.scard() == 2);
 
@@ -85,7 +85,7 @@ public class SetKeyTest
         assertTrue(o.size() == 2);
 
         Object[] arrayA = o.toArray();
-        assertTrue(arrayA[0].equals("token-2"));
-        assertTrue(arrayA[1].equals("token-1"));
+        assertEquals(arrayA[0], "token-1");
+        assertEquals(arrayA[1], "token-2");
     }
 }
