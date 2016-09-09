@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -83,9 +84,7 @@ public class SetKeyTest
         Set o = tokens.smembers();
         log.info("Set list: "+o);
         assertTrue(o.size() == 2);
-
-        Object[] arrayA = o.toArray();
-        assertEquals(arrayA[0], "token-1");
-        assertEquals(arrayA[1], "token-2");
+        assertTrue(o.contains("token-1"));
+        assertTrue(o.contains("token-2"));
     }
 }
