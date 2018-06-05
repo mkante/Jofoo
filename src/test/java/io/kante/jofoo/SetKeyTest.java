@@ -1,4 +1,4 @@
-package kante.jofoo;
+package io.kante.jofoo;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +11,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import redis.clients.jedis.Jedis;
 
-import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;

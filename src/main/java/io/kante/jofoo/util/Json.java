@@ -1,9 +1,8 @@
-package kante.jofoo.util;
+package io.kante.jofoo.util;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import kante.jofoo.error.JsonError;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

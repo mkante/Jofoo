@@ -1,14 +1,14 @@
-package kante.jofoo;
+package io.kante.jofoo;
 
-import kante.jofoo.util.Json;
-import kante.jofoo.util.Jsonnable;
+import io.kante.jofoo.util.ArrayHelpers;
+import io.kante.jofoo.util.Json;
+import io.kante.jofoo.util.NumberHelpers;
+import io.kante.jofoo.util.Jsonnable;
 import static redis.clients.jedis.BinaryClient.LIST_POSITION;
 import redis.clients.jedis.Jedis;
 
 import java.math.BigDecimal;
 import java.util.List;
-import static kante.jofoo.util.ArrayHelpers.* ;
-import static kante.jofoo.util.NumberHelpers.*;
 
 /**
  * Created by moh on 8/8/16.
@@ -22,42 +22,42 @@ public class ListKey extends RedisKey
 
     public Long lpush(Object... values) {
 
-        return getJedis().lpush(key, arrayObjectToString(values));
+        return getJedis().lpush(key, ArrayHelpers.arrayObjectToString(values));
     }
 
     public Long lpush(Jsonnable... values) {
 
-        return getJedis().lpush(key, jsonnableObjectToString(values));
+        return getJedis().lpush(key, ArrayHelpers.jsonnableObjectToString(values));
     }
 
     public Long rpush(Object... values) {
 
-        return getJedis().rpush(key, arrayObjectToString(values));
+        return getJedis().rpush(key, ArrayHelpers.arrayObjectToString(values));
     }
 
     public Long rpush(Jsonnable... values) {
 
-        return getJedis().rpush(key, jsonnableObjectToString(values));
+        return getJedis().rpush(key, ArrayHelpers.jsonnableObjectToString(values));
     }
 
     public Long rpushx(Object... values) {
 
-        return getJedis().rpushx(key, arrayObjectToString(values));
+        return getJedis().rpushx(key, ArrayHelpers.arrayObjectToString(values));
     }
 
     public Long rpushx(Jsonnable... values) {
 
-        return getJedis().rpushx(key, jsonnableObjectToString(values));
+        return getJedis().rpushx(key, ArrayHelpers.jsonnableObjectToString(values));
     }
 
     public Long lpushx(Object... values) {
 
-        return getJedis().lpushx(key, arrayObjectToString(values));
+        return getJedis().lpushx(key, ArrayHelpers.arrayObjectToString(values));
     }
 
     public Long lpushx(Jsonnable... values) {
 
-        return getJedis().lpushx(key, jsonnableObjectToString(values));
+        return getJedis().lpushx(key, ArrayHelpers.jsonnableObjectToString(values));
     }
 
     public String lindex(long idx) {
@@ -65,19 +65,19 @@ public class ListKey extends RedisKey
     }
 
     public Integer lindexInt(long idx) {
-        return parseInt(lindex(idx));
+        return NumberHelpers.parseInt(lindex(idx));
     }
 
     public Float lindexFloat(long idx) {
-        return parseFloat(lindex(idx));
+        return NumberHelpers.parseFloat(lindex(idx));
     }
 
     public Double lindexDouble(long idx) {
-        return parseDouble(lindex(idx));
+        return NumberHelpers.parseDouble(lindex(idx));
     }
 
     public BigDecimal lindexBigDecimal(long idx) {
-        return parseBigDecimal(lindex(idx));
+        return NumberHelpers.parseBigDecimal(lindex(idx));
     }
 
     public <T> T lindexObject(long idx, Class<T> clzz) {
@@ -97,19 +97,19 @@ public class ListKey extends RedisKey
     }
 
     public Integer lpopInt() {
-        return parseInt(lpop());
+        return NumberHelpers.parseInt(lpop());
     }
 
     public Float lpopFloat() {
-        return parseFloat(lpop());
+        return NumberHelpers.parseFloat(lpop());
     }
 
     public Double lpopDouble() {
-        return parseDouble(lpop());
+        return NumberHelpers.parseDouble(lpop());
     }
 
     public BigDecimal lpopBigDecimal() {
-        return parseBigDecimal(lpop());
+        return NumberHelpers.parseBigDecimal(lpop());
     }
 
     public <T> T lpopObject(Class<T> clzz) {
@@ -150,15 +150,15 @@ public class ListKey extends RedisKey
     }
 
     public Integer rpopInt() {
-        return parseInt(rpop());
+        return NumberHelpers.parseInt(rpop());
     }
 
     public Double rpopDouble() {
-        return parseDouble(rpop());
+        return NumberHelpers.parseDouble(rpop());
     }
 
     public BigDecimal rpopBigDecimal() {
-        return parseBigDecimal(rpop());
+        return NumberHelpers.parseBigDecimal(rpop());
     }
 
     public <T> T rpopObject(Class<T> clzz) {

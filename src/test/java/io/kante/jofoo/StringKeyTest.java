@@ -1,7 +1,6 @@
-package kante.jofoo;
+package io.kante.jofoo;
 
-import kante.jofoo.StringKey;
-import kante.jofoo.util.Song;
+import io.kante.jofoo.util.Song;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

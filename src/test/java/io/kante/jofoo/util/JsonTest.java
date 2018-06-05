@@ -1,4 +1,4 @@
-package kante.jofoo.util;
+package io.kante.jofoo.util;
 
 import org.junit.Test;
 

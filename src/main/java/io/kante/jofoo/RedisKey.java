@@ -1,14 +1,11 @@
-package kante.jofoo;
+package io.kante.jofoo;
 
-import kante.jofoo.util.Json;
-import kante.jofoo.util.Jsonnable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.ScanResult;
 import redis.clients.jedis.exceptions.JedisConnectionException;
 
-import java.math.BigDecimal;
 import java.util.*;
 
 /**

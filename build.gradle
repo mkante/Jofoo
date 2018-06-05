@@ -1,10 +1,26 @@
-apply plugin: 'java'
+plugins {
+    id 'application'
+    id 'maven-publish'
+}
 
-sourceCompatibility = 1.5
+sourceCompatibility = 1.6
+group = 'io.kante'
+archivesBaseName = 'jofoo'
 version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+}
+
+publishing {
+    publications {
+        app (MavenPublication) {
+            groupId group
+            artifactId archivesBaseName
+            version version
+            artifact jar
+        }
+    }
 }
 
 dependencies {
@@ -22,8 +38,11 @@ dependencies {
 }
 
 test {
+    String redisURI = System.getProperty("redis.uri")
+    if (redisURI != null) systemProperty 'redis.uri', redisURI
+
     minHeapSize = "128m"
-    useJUnit();
+    useJUnit()
     testLogging.showStackTraces = true
     testLogging.showStandardStreams = true
     testLogging.showCauses = true
@@ -31,8 +50,3 @@ test {
     outputs.upToDateWhen { false }
 }
 
-task "uri" << {
-
-    URI ur = new URI("redis://192.168.56.21:6379/1");
-    println "Path: "+ur.path.split("/", 2)
-}

@@ -1,13 +1,12 @@
-package kante.jofoo;
+package io.kante.jofoo;
 
-import kante.jofoo.util.Json;
-import kante.jofoo.util.Jsonnable;
+import io.kante.jofoo.util.NumberHelpers;
+import io.kante.jofoo.util.Json;
+import io.kante.jofoo.util.Jsonnable;
 import redis.clients.jedis.Jedis;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
-import static kante.jofoo.util.NumberHelpers.*;
 
 /**
  * Created by moh on 8/6/16.
@@ -32,19 +31,19 @@ public class StringKey extends RedisKey
     }
 
     public Integer getInt() {
-        return parseInt(get());
+        return NumberHelpers.parseInt(get());
     }
 
     public Double getDouble() {
-        return parseDouble(get());
+        return NumberHelpers.parseDouble(get());
     }
 
     public Float getFloat() {
-        return parseFloat(get());
+        return NumberHelpers.parseFloat(get());
     }
 
     public BigDecimal getBigDecimal() {
-        return parseBigDecimal(get());
+        return NumberHelpers.parseBigDecimal(get());
     }
 
     public <T> T getObject(Class<T> clzz) {

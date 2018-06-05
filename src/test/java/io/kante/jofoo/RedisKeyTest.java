@@ -1,4 +1,4 @@
-package kante.jofoo;
+package io.kante.jofoo;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

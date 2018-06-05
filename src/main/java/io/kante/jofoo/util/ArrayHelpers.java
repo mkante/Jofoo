@@ -1,7 +1,4 @@
-package kante.jofoo.util;
-
-import java.util.Arrays;
-import java.util.List;
+package io.kante.jofoo.util;
 
 /**
  * Created by moh on 8/8/16.

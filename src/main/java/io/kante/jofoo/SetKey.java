@@ -1,11 +1,11 @@
-package kante.jofoo;
+package io.kante.jofoo;
 
-import kante.jofoo.util.Json;
-import kante.jofoo.util.Jsonnable;
+import io.kante.jofoo.util.Json;
+import io.kante.jofoo.util.Jsonnable;
 import redis.clients.jedis.Jedis;
 
 import java.util.*;
-import static kante.jofoo.util.ArrayHelpers.* ;
+import static io.kante.jofoo.util.ArrayHelpers.* ;
 
 /**
  * Created by moh on 8/8/16.

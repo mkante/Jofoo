@@ -1,4 +1,4 @@
-package kante.jofoo.error;
+package io.kante.jofoo.error;
 
 /**
  * Created by moh on 8/6/16.

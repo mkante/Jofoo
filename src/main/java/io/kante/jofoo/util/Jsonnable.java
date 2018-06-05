@@ -1,4 +1,4 @@
-package kante.jofoo.util;
+package io.kante.jofoo.util;
 
 /**
  * Created by moh on 8/6/16.
