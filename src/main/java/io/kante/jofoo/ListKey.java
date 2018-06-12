@@ -20,6 +20,10 @@ public class ListKey extends RedisKey
         super(con);
     }
 
+    public ListKey(Jedis con, String key) {
+        super(con, key);
+    }
+
     public Long lpush(Object... values) {
 
         return getJedis().lpush(key, ArrayHelpers.arrayObjectToString(values));

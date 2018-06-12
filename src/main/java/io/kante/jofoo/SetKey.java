@@ -16,6 +16,10 @@ public class SetKey extends RedisKey
         super(con);
     }
 
+    public SetKey(Jedis con, String key) {
+        super(con, key);
+    }
+
     public Long sadd(Object... objs) {
         return getJedis().sadd(key, arrayObjectToString(objs));
     }

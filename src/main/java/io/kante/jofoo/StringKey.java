@@ -18,6 +18,10 @@ public class StringKey extends RedisKey
         super(con);
     }
 
+    public StringKey(Jedis con, String key) {
+        super(con, key);
+    }
+
     public void set(Object value) {
         getJedis().set(key, value+"");
     }

@@ -18,6 +18,10 @@ public class HashKey extends RedisKey
         super(con);
     }
 
+    public HashKey(Jedis con, String key) {
+        super(con, key);
+    }
+
     public Long hset(String field, Object val) {
         return getJedis().hset(key, field, val + "");
     }
